@@ -23,11 +23,14 @@ int main() {
 	errors_init(&a);
 	sactions_init(&a);
 	tactions_init(&a);
-	a.str = ft_strdup("1P11CCCCPEE1");
+	a.str = ft_strdup(" hola|| algo< tolen>pra << TOK >> TAA && KAKA");
 	printf("%s\n", a.str);
-	evaluate(&a, &info);
 
-	printf("there are:\n%d player\n%d exit\n%d collectible\n", info.player_count, info.exit_count, info.collect_count);
+	int final = evaluate(&a, &info);
+	if (final > a.errorlen)
+		get_token(&a, &info);
+	printf("%d\n", final);
 
+	ft_sarrprint(info.tokens);
 	return (0);
 }

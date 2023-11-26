@@ -16,9 +16,7 @@
 
 typedef struct s_data
 {
-	int	player_count;
-	int	exit_count;
-	int	collect_count;
+	char	**tokens;
 }	t_data;
 
 typedef struct s_automata
@@ -31,9 +29,28 @@ typedef struct s_automata
 	int     errorlen;
 	int		i;
 	int		j;
-	void	(*fsa[9])(struct s_automata *a, void *data);
-	void	(*fta[9][9])(struct s_automata *a, void *data);
+	void	(*fsa[15])(struct s_automata *a, void *data);
+	void	(*fta[15][15])(struct s_automata *a, void *data);
 }	t_automata;
+
+typedef enum e_states
+{
+	EMPTY,
+	DQUOTES,
+	SQUOTES,
+	PIPE,
+	OR,
+	LESS,
+	HEREDOC,
+	GREATER,
+	APPEND,
+	AMPER,
+	AND,
+	INVALID,
+	SPACES_NW,
+	SPACES_BTW,
+	NOT_OPERATOR
+}	t_tokens;
 
 int		evaluate(t_automata *a, void *data);
 void	alphabet_init(t_automata *a);
@@ -41,9 +58,8 @@ void	errors_init(t_automata *a);
 
 /* Single Actions */
 void	sactions_init(t_automata *a);
-void	count_player(t_automata *a, void *data);
-void	count_exit(t_automata *a, void *data);
-void	count_collectible(t_automata *a, void *data);
+void	get_token(t_automata *a, void *data);
+// void	count_player(t_automata *a, void *data);
 
 /* Transition Actions */
 void	tactions_init(t_automata *a);

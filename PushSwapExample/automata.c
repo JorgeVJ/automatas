@@ -17,8 +17,8 @@ int states[][4] = {
 	{0, 1, 3, 2},   // Empty input
 	{2, 2, 3, 2},   // Negative sign found
 	{2, 2, 2, 2},   // Invalid Character
-	{4, 2, 3, 2},   // Number found
-	{4, 1, 3, 2},   // Space after numbers
+	{4, 2, 3, 2},   // Digit found
+	{4, 1, 3, 2},   // Space after Digits
 };
 
 int idx(char *alphabet[], char c)
