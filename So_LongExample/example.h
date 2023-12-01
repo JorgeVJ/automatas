@@ -22,6 +22,16 @@ typedef struct s_data
 	int	collect_count;
 }	t_data;
 
+typedef enum e_states
+{
+	FOUND_1,
+	FOUND_P,
+	FOUND_E,
+	FOUND_C,
+	FOUND_0,
+	INVALID
+}	t_tokens;
+
 int		evaluate(t_automata *a, void *data);
 void	alphabet_init(t_automata *a);
 void	errors_init(t_automata *a);

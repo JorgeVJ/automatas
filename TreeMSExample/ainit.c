@@ -25,8 +25,6 @@ void	alphabet_init(t_automata *a)
 	a->alphabet = ft_sarradd(a->alphabet, "&");
 	a->alphabet = ft_sarradd(a->alphabet, "\"");
 	a->alphabet = ft_sarradd(a->alphabet, "\'");
-	a->alphabet = ft_sarradd(a->alphabet, "(");
-	a->alphabet = ft_sarradd(a->alphabet, ")");
 }
 
 /**
@@ -73,12 +71,12 @@ void	tactions_init(t_automata *a)
 		a->fta[SPACES_BTW][i] = get_token;
 		i += 2;
 	}
-	// Faster asignations but less readable
+	// I think is easier to read this way.
 	i = PIPE;
 	while (i <= AND)
 		a->fta[i++][SPACES_NW] = get_token;
 
-	// Easier to read
+	// But al easy this way.
 	a->fta[PIPE][NOT_OPERATOR] = get_token;
 	a->fta[OR][NOT_OPERATOR] = get_token;
 	a->fta[LESS][NOT_OPERATOR] = get_token;

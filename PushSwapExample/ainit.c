@@ -48,5 +48,5 @@ void	sactions_init(t_automata *a)
 **/
 void	tactions_init(t_automata *a)
 {
-	a->fta[3][4] = getnum;
+	a->fta[DIGIT][SPACES_BTW] = getnum;
 }

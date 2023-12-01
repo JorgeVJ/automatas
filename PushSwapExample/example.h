@@ -20,6 +20,15 @@ typedef struct s_data
 	t_tree	*numbers;
 }	t_data;
 
+typedef enum e_states
+{
+	EMPTY,
+	NEGATIVE,
+	INVALID,
+	DIGIT,
+	SPACES_BTW
+}	t_tokens;
+
 int		evaluate(t_automata *a, void *data);
 void	alphabet_init(t_automata *a);
 void	errors_init(t_automata *a);

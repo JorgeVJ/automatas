@@ -44,21 +44,3 @@ void get_token(t_automata *a, void *data)
 	else
 		add_token(info->tree, cmdline);
 }
-
-/* void get_token(t_automata *a, void *data)
-{
-	char	*cmdline;
-	t_data	*info;
-	t_list	*trees;
-
-	info = (t_data *)data;
-	trees = info->trees;
-	cmdline = ft_substr(a->str, a->j, a->i - a->j);
-	a->j = a->i;
-	free (cmdline);
-	if (!info->trees)
-	{
-		info->trees = ft_lstnew(tree_new_node(cmdline));
-		printf("es Nulo\n");
-	}
-} */

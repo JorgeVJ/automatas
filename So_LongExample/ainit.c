@@ -47,9 +47,9 @@ void	errors_init(t_automata *a)
 **/
 void	sactions_init(t_automata *a)
 {
-	a->fsa[2] = count_player;
-	a->fsa[3] = count_exit;
-	a->fsa[4] = count_collectible;
+	a->fsa[FOUND_P] = count_player;
+	a->fsa[FOUND_E] = count_exit;
+	a->fsa[FOUND_C] = count_collectible;
 }
 
 /**
