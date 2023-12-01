@@ -28,7 +28,7 @@ void	alphabet_init(t_automata *a)
 
 /**
  * 	Error strings to print when automata finish on a
- * 		non finish state.
+ * 		non ending state.
 **/
 void	errors_init(t_automata *a)
 {
@@ -49,16 +49,15 @@ void	errors_init(t_automata *a)
 }
 
 /**
- *	Simple actions, they trigger when getting a certain state. 
+ *	Simple actions, they trigger when entering a state.
 **/
 void	sactions_init(t_automata *a)
 {
-	// a->fsa[4] = count_collectible;
 }
 
 /**
  *	Transition actions, they trigger when going
- * 		from a certain state to another.
+ * 		from one state to another.
 **/
 void	tactions_init(t_automata *a)
 {
@@ -66,12 +65,10 @@ void	tactions_init(t_automata *a)
 	a->fta[NOT_OPERATOR][LESS] = get_token;
 	a->fta[NOT_OPERATOR][GREATER] = get_token;
 	a->fta[NOT_OPERATOR][AMPER] = get_token;
-
 	a->fta[SPACES_BTW][PIPE] = get_token;
 	a->fta[SPACES_BTW][LESS] = get_token;
 	a->fta[SPACES_BTW][GREATER] = get_token;
 	a->fta[SPACES_BTW][AMPER] = get_token;
-
 	a->fta[PIPE][SPACES_NW] = get_token;
 	a->fta[OR][SPACES_NW] = get_token;
 	a->fta[AND][SPACES_NW] = get_token;
@@ -79,7 +76,6 @@ void	tactions_init(t_automata *a)
 	a->fta[HEREDOC][SPACES_NW] = get_token;
 	a->fta[GREATER][SPACES_NW] = get_token;
 	a->fta[APPEND][SPACES_NW] = get_token;
-
 	a->fta[PIPE][NOT_OPERATOR] = get_token;
 	a->fta[OR][NOT_OPERATOR] = get_token;
 	a->fta[AND][NOT_OPERATOR] = get_token;

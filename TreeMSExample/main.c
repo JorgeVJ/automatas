@@ -37,10 +37,11 @@ int	get_state(int i, int j)
 		{13,  3,  5,  7,  9,  1,  2, 14},   // 13 Spaces between words
 		{13,  3,  5,  7,  9,  1,  2, 14},   // 14 Not operators
 	};
+
 	return (states[i][j]);
 }
 
-void	automata_init(t_automata  *a)
+void	automata_init(t_automata *a)
 {
 	alphabet_init(a);
 	errors_init(a);
@@ -49,25 +50,22 @@ void	automata_init(t_automata  *a)
 	a->get_state = get_state;
 }
 
-int main() {
-	t_automata  a;
+int	main(void)
+{
+	t_automata	a;
 	t_data		info;
-	int 		finalstate;
+	int			finalstate;
 
 	ft_bzero(&a, sizeof(t_automata));
 	ft_bzero(&info, sizeof(t_data));
-
 	automata_init(&a);
-
 	a.str = ft_strdup(" echo 'hola mundo' | cat | grep a > file1 && cat file1");
 	printf("%s\n", a.str);
-
 	finalstate = evaluate(&a, &info);
 	if (finalstate > a.errorlen)
 		get_token(&a, &info);
-	else	
+	else
 		printf("%s\n", a.errors[finalstate]);
-
 	printf("Imprimir arbol\n");
 	tree_in_order(info.tree, printtree);
 	return (0);

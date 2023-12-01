@@ -16,7 +16,7 @@
 /*    This file will contain all the custom actions refered to the project    */
 /* ************************************************************************** */
 
-void get_token(t_automata *a, void *data)
+void	get_token(t_automata *a, void *data)
 {
 	char	*cmdline;
 	t_data	*info;

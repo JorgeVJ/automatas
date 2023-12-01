@@ -13,9 +13,9 @@
 #include "../libft/libft.h"
 #include "automata.h"
 
-int idx(char *alphabet[], char c)
+int	idx(char *alphabet[], char c)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (alphabet[++i])
@@ -24,19 +24,18 @@ int idx(char *alphabet[], char c)
 	return (i);
 }
 
-int evaluate(t_automata *a, void *data)
+int	evaluate(t_automata *a, void *data)
 {
-	int state = 0;
-
 	a->ostate = 0;
 	a->i = -1;
-	while (++a->i < ft_strlen(a->str)) {
-		state = a->get_state(state, idx(a->alphabet, a->str[a->i]));
-		if (a->fsa[state])
-			a->fsa[state](a, data);
-		if (a->fta[a->ostate][state])
-			a->fta[a->ostate][state](a, data);
-		a->ostate = state;
+	while (++a->i < ft_strlen(a->str))
+	{
+		a->state = a->get_state(a->state, idx(a->alphabet, a->str[a->i]));
+		if (a->fsa[a->state])
+			a->fsa[a->state](a, data);
+		if (a->fta[a->ostate][a->state])
+			a->fta[a->ostate][a->state](a, data);
+		a->ostate = a->state;
 	}
-	return (state);
+	return (a->state);
 }

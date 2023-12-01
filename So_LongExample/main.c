@@ -26,10 +26,11 @@ int	get_state(int i, int j)
 		{8, 2, 3, 4, 5, 1},   // 7 Mid Wall
 		{8, 2, 3, 4, 5, 1},   // 8 End Wall
 	};
+
 	return (states[i][j]);
 }
 
-void	automata_init(t_automata  *a)
+void	automata_init(t_automata *a)
 {
 	alphabet_init(a);
 	errors_init(a);
@@ -38,20 +39,18 @@ void	automata_init(t_automata  *a)
 	a->get_state = get_state;
 }
 
-int main() {
-	t_automata  a;
+int	main(void)
+{
+	t_automata	a;
 	t_data		info;
 
 	ft_bzero(&a, sizeof(t_automata));
 	ft_bzero(&info, sizeof(t_data));
-
 	automata_init(&a);
-
 	a.str = ft_strdup("111CPEE1");
 	printf("%s\n", a.str);
-
 	evaluate(&a, &info);
-
-	printf("there are:\n%d player\n%d exit\n%d collectible\n", info.player_count, info.exit_count, info.collect_count);
+	printf("there are:\n%d player\n%d exit\n%d collectible\n",
+		info.player_count, info.exit_count, info.collect_count);
 	return (0);
 }

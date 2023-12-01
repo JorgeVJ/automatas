@@ -36,7 +36,6 @@ void	numtotree(t_data *data, t_tree *tree, int n)
 		numtotree(data, tree->left, n);
 }
 
-
 void	getnum(t_automata *a, void *data)
 {
 	int		numint;

@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
- 
 #include "example.h"
 
 /* ************************************************************************** */
@@ -30,7 +29,7 @@ void	add_token(t_tree *tree, char *cmdline)
 		add_token(tree->right, cmdline);
 }
 
-void get_token(t_automata *a, void *data)
+void	get_token(t_automata *a, void *data)
 {
 	char	*cmdline;
 	t_data	*info;

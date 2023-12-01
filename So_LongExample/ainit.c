@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
- #include "example.h"
+#include "example.h"
 
 /**
  * 	Alphabet definitions
@@ -26,7 +26,7 @@ void	alphabet_init(t_automata *a)
 
 /**
  * 	Error strings to print when automata finish on a
- * 		non finish state.
+ * 		non ending state.
 **/
 void	errors_init(t_automata *a)
 {
@@ -43,7 +43,7 @@ void	errors_init(t_automata *a)
 }
 
 /**
- *	Simple actions, they trigger when getting a certain state. 
+ *	Simple actions, they trigger when entering a state.
 **/
 void	sactions_init(t_automata *a)
 {
@@ -54,9 +54,8 @@ void	sactions_init(t_automata *a)
 
 /**
  *	Transition actions, they trigger when going
- * 		from a certain state to another.
+ * 		from one state to another.
 **/
 void	tactions_init(t_automata *a)
 {
-	// a->fta[3][4] = getnum;
 }

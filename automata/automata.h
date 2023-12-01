@@ -13,14 +13,14 @@
 typedef struct s_automata
 {
 	char	**alphabet;
-	char    **errors;
+	char	**errors;
 	char	*str;
-	int     state;
-	int     ostate;
-	int     errorlen;
+	int		state;
+	int		ostate;
+	int		errorlen;
 	int		i;
 	int		j;
-	void	(*fsa[17])(struct s_automata *a, void *data);
-	void	(*fta[17][17])(struct s_automata *a, void *data);
+	void	(*fsa[20])(struct s_automata *a, void *data);
+	void	(*fta[20][20])(struct s_automata *a, void *data);
 	int		(*get_state)(int state, int abc_idx);
 }	t_automata;
