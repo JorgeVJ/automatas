@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "automata.h"
+ 
+#include "example.h"
 
 /* ************************************************************************** */
 /*    This file will contain all the custom actions refered to the project    */

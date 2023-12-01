@@ -10,15 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include "../libft/libft.h"
-
-typedef struct s_data
-{
-	t_tree	*numbers;
-}	t_data;
-
 typedef struct s_automata
 {
 	char	**alphabet;
@@ -27,20 +18,9 @@ typedef struct s_automata
 	int     state;
 	int     ostate;
 	int     errorlen;
-	int     statelen;
 	int		i;
 	int		j;
-	void	(*fsa[5])(struct s_automata *a, void *data);
-	void	(*fta[5][5])(struct s_automata *a, void *data);
+	void	(*fsa[17])(struct s_automata *a, void *data);
+	void	(*fta[17][17])(struct s_automata *a, void *data);
+	int		(*get_state)(int state, int abc_idx);
 }	t_automata;
-
-int		evaluate(t_automata *a, void *data);
-void	alphabet_init(t_automata *a);
-void	errors_init(t_automata *a);
-
-/* Single Actions */
-void	sactions_init(t_automata *a);
-void	getnum(t_automata *a, void *data);
-
-/* Transition Actions */
-void	tactions_init(t_automata *a);

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "automata.h"
+ #include "example.h"
 
 /**
  * 	Alphabet definitions

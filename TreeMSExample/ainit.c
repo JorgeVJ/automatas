@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "automata.h"
+ 
+#include "example.h"
 
 /**
  * 	Alphabet definitions
@@ -55,7 +56,6 @@ void	errors_init(t_automata *a)
 **/
 void	sactions_init(t_automata *a)
 {
-	// a->fsa[4] = count_collectible;
 }
 
 /**
@@ -64,29 +64,26 @@ void	sactions_init(t_automata *a)
 **/
 void	tactions_init(t_automata *a)
 {
-	a->fta[NOT_OPERATOR][PIPE] = get_token;
-	a->fta[NOT_OPERATOR][LESS] = get_token;
-	a->fta[NOT_OPERATOR][GREATER] = get_token;
-	a->fta[NOT_OPERATOR][AMPER] = get_token;
+	int	i;
 
-	a->fta[SPACES_BTW][PIPE] = get_token;
-	a->fta[SPACES_BTW][LESS] = get_token;
-	a->fta[SPACES_BTW][GREATER] = get_token;
-	a->fta[SPACES_BTW][AMPER] = get_token;
+	i = PIPE;
+	while (i <= AMPER)
+	{
+		a->fta[NOT_OPERATOR][i] = get_token;
+		a->fta[SPACES_BTW][i] = get_token;
+		i += 2;
+	}
+	// Faster asignations but less readable
+	i = PIPE;
+	while (i <= AND)
+		a->fta[i++][SPACES_NW] = get_token;
 
-	a->fta[PIPE][SPACES_NW] = get_token;
-	a->fta[OR][SPACES_NW] = get_token;
-	a->fta[AND][SPACES_NW] = get_token;
-	a->fta[LESS][SPACES_NW] = get_token;
-	a->fta[HEREDOC][SPACES_NW] = get_token;
-	a->fta[GREATER][SPACES_NW] = get_token;
-	a->fta[APPEND][SPACES_NW] = get_token;
-
+	// Easier to read
 	a->fta[PIPE][NOT_OPERATOR] = get_token;
 	a->fta[OR][NOT_OPERATOR] = get_token;
-	a->fta[AND][NOT_OPERATOR] = get_token;
 	a->fta[LESS][NOT_OPERATOR] = get_token;
 	a->fta[HEREDOC][NOT_OPERATOR] = get_token;
 	a->fta[GREATER][NOT_OPERATOR] = get_token;
 	a->fta[APPEND][NOT_OPERATOR] = get_token;
+	a->fta[AND][NOT_OPERATOR] = get_token;
 }
