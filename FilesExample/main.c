@@ -28,6 +28,7 @@ void	state_handle(t_automata *a, int state)
 		printf("%s\n", a->errors[a->state]);
 }
 
+/* It would be easier with just a ft_trim() and a ft_strncmp(), but I had to try. */
 int main(void)
 {
 	t_automata	a;
