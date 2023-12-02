@@ -12,6 +12,7 @@
 
 typedef struct s_automata
 {
+	void	*data;
 	char	**alphabet;
 	char	**errors;
 	char	*str;
@@ -24,3 +25,6 @@ typedef struct s_automata
 	void	(*fta[20][20])(struct s_automata *a, void *data);
 	int		(*get_state)(int state, int abc_idx);
 }	t_automata;
+
+int		evaluate(t_automata *a);
+void	evaluate_file(t_automata *a, char *dir, void (*f)(t_automata *a, int state));

@@ -12,35 +12,23 @@
 
 #include "example.h"
 
-int	get_state(int i, int j)
-{
-	int states[][6] = {
-	//   1, P, E, C, 0, ^
-		{6, 1, 1, 1, 1, 1},   // 0 Empty input
-		{1, 1, 1, 1, 1, 1},   // 1 Invalid Character
-		{8, 2, 3, 4, 5, 1},   // 2 Player Found
-		{8, 2, 3, 4, 5, 1},   // 3 Exit Found
-		{8, 2, 3, 4, 5, 1},   // 4 Collectible Found
-		{8, 2, 3, 4, 5, 1},   // 5 Blank Space found
-		{7, 2, 3, 4, 5, 1},   // 6 First Wall
-		{8, 2, 3, 4, 5, 1},   // 7 Mid Wall
-		{8, 2, 3, 4, 5, 1},   // 8 End Wall
-	};
-
-	return (states[i][j]);
-}
-
 void	automata_init(t_automata *a, void *data)
 {
+	a->data = data;
 	alphabet_init(a);
 	errors_init(a);
 	sactions_init(a);
 	tactions_init(a);
-	a->data = data;
 	a->get_state = get_state;
 }
 
-int	main(void)
+void	state_handle(t_automata *a, int state)
+{
+	if (a->state < a->errorlen)
+		printf("%s\n", a->errors[a->state]);
+}
+
+int main(void)
 {
 	t_automata	a;
 	t_data		info;
@@ -48,10 +36,6 @@ int	main(void)
 	ft_bzero(&a, sizeof(t_automata));
 	ft_bzero(&info, sizeof(t_data));
 	automata_init(&a, &info);
-	a.str = ft_strdup("111CPEE1");
-	printf("%s\n", a.str);
-	evaluate(&a);
-	printf("there are:\n%d player\n%d exit\n%d collectible\n",
-		info.player_count, info.exit_count, info.collect_count);
+	evaluate_file(&a, "scene.rt", state_handle);
 	return (0);
 }

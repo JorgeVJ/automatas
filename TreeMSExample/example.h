@@ -41,10 +41,9 @@ typedef enum e_states
 	O_PAREN,
 	C_PAREN,
 	NOT_OPERATOR
-}	t_tokens;
+}	t_states;
 
 /* Initialization */
-int		evaluate(t_automata *a, void *data);
 void	alphabet_init(t_automata *a);
 void	errors_init(t_automata *a);
 

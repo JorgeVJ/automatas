@@ -29,10 +29,10 @@ void	alphabet_init(t_automata *a)
 void	errors_init(t_automata *a)
 {
 	a->errors = NULL;
-	a->errorlen = 3;
 	a->errors = ft_sarradd(NULL, "Empty string.");
 	a->errors = ft_sarradd(a->errors, "Negative sign without a number.");
 	a->errors = ft_sarradd(a->errors, "Invalid characters");
+	a->errorlen = ft_sarrsize(a->errors);
 }
 
 /**

@@ -17,29 +17,40 @@
 
 typedef struct s_data
 {
-	int	player_count;
-	int	exit_count;
-	int	collect_count;
+
 }	t_data;
 
 typedef enum e_states
 {
-	FOUND_1,
-	FOUND_P,
-	FOUND_E,
-	FOUND_C,
-	FOUND_0,
-	INVALID
+	EMPTY,
+	INVALID,
+	COMMENT,
+	AMBIENT,
+	CAMERA,
+	LIGHT,
+	PLANE,
+	SPHERE,
+	CYLINDER,
+	M_PLANE,
+	M_SPHERE,
+	M_CYLINDER,
+	FOUND_ELEM
 }	t_states;
 
+/* Innit */
 void	alphabet_init(t_automata *a);
 void	errors_init(t_automata *a);
+int		get_state(int i, int j);
 
 /* Single Actions */
 void	sactions_init(t_automata *a);
-void	count_player(t_automata *a, void *data);
-void	count_exit(t_automata *a, void *data);
-void	count_collectible(t_automata *a, void *data);
+// void	count_player(t_automata *a, void *data);
 
 /* Transition Actions */
 void	tactions_init(t_automata *a);
+void	ambient(t_automata *a, void *data);
+void	camera(t_automata *a, void *data);
+void	light(t_automata *a, void *data);
+void	sphere(t_automata *a, void *data);
+void	plane(t_automata *a, void *data);
+void	cylinder(t_automata *a, void *data);

@@ -24,7 +24,7 @@ int	idx(char *alphabet[], char c)
 	return (i);
 }
 
-int	evaluate(t_automata *a, void *data)
+int	evaluate(t_automata *a)
 {
 	a->ostate = 0;
 	a->i = -1;
@@ -32,10 +32,28 @@ int	evaluate(t_automata *a, void *data)
 	{
 		a->state = a->get_state(a->state, idx(a->alphabet, a->str[a->i]));
 		if (a->fsa[a->state])
-			a->fsa[a->state](a, data);
+			a->fsa[a->state](a, a->data);
 		if (a->fta[a->ostate][a->state])
-			a->fta[a->ostate][a->state](a, data);
+			a->fta[a->ostate][a->state](a, a->data);
 		a->ostate = a->state;
 	}
 	return (a->state);
+}
+
+void	evaluate_file(t_automata *a, char *dir, void (*f)(t_automata *a, int state))
+{
+	int		file;
+	char	*line;
+
+	file = open(dir, O_RDONLY);
+	line = get_next_line(file);
+	while (line)
+	{
+		a->str = line;
+		a->state = 0;
+		f(a, evaluate(a));
+		free (line);
+		line = get_next_line(file);
+	}
+	close(file);
 }

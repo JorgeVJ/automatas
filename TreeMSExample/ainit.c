@@ -33,7 +33,6 @@ void	alphabet_init(t_automata *a)
 void	errors_init(t_automata *a)
 {
 	a->errors = NULL;
-	a->errorlen = 12;
 	a->errors = ft_sarradd(NULL, "Empty string.");
 	a->errors = ft_sarradd(a->errors, "Open double quotes");
 	a->errors = ft_sarradd(a->errors, "Open single quotes");
@@ -46,6 +45,7 @@ void	errors_init(t_automata *a)
 	a->errors = ft_sarradd(a->errors, "& Found");
 	a->errors = ft_sarradd(a->errors, "And open");
 	a->errors = ft_sarradd(a->errors, "Invalid input");
+	a->errorlen = ft_sarrsize(a->errors);
 }
 
 /**

@@ -41,12 +41,13 @@ int	get_state(int i, int j)
 	return (states[i][j]);
 }
 
-void	automata_init(t_automata *a)
+void	automata_init(t_automata *a, void *data)
 {
 	alphabet_init(a);
 	errors_init(a);
 	sactions_init(a);
 	tactions_init(a);
+	a->data = data;
 	a->get_state = get_state;
 }
 
@@ -58,10 +59,10 @@ int	main(void)
 
 	ft_bzero(&a, sizeof(t_automata));
 	ft_bzero(&info, sizeof(t_data));
-	automata_init(&a);
+	automata_init(&a, &info);
 	a.str = ft_strdup(" echo 'hola mundo' | cat | grep a > file1 && cat file1");
 	printf("%s\n", a.str);
-	finalstate = evaluate(&a, &info);
+	finalstate = evaluate(&a);
 	if (finalstate > a.errorlen)
 		get_token(&a, &info);
 	else

@@ -27,9 +27,8 @@ typedef enum e_states
 	INVALID,
 	DIGIT,
 	SPACES_BTW
-}	t_tokens;
+}	t_states;
 
-int		evaluate(t_automata *a, void *data);
 void	alphabet_init(t_automata *a);
 void	errors_init(t_automata *a);
 
