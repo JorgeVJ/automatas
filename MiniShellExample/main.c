@@ -12,30 +12,6 @@
 
 #include "example.h"
 
-int	get_state(int i, int j)
-{
-	int states[][8] = {
-//   \S,  |,  <,  >,  &,  ",  ',
-	{ 0, 11, 11, 11, 11,  1,  2, 14},   // 0  Empty input
-	{ 1,  1,  1,  1,  1, 13,  1,  1},   // 1  Open double quotes
-	{ 2,  2,  2,  2,  2,  2, 13,  2},   // 2  Open single quotes
-	{12,  4,  5, 11, 11,  1,  2, 14},   // 3  Pipe open
-	{12, 11, 11, 11, 11,  1,  2, 14},   // 4  Or open
-	{12, 11,  6, 11, 11,  1,  2, 14},   // 5  Less open
-	{12, 11, 11, 11, 11,  1,  2, 14},   // 6  Heredoc open
-	{12, 11, 11,  8, 11,  1,  2, 14},   // 7  Greater open
-	{12, 11, 11, 11, 11,  1,  2, 14},   // 8  Append open
-	{12, 11, 11, 11, 10,  1,  2, 11},   // 9  & Found
-	{12, 11, 11, 11, 11,  1,  2, 14},   // 10 And open
-	{11, 11, 11, 11, 11, 11, 11, 11},   // 11 Invalid input
-	{12,  1,  1,  1,  1,  1,  2, 14},   // 12 Spaces without words
-	{13,  3,  5,  7,  9,  1,  2, 14},   // 13 Spaces between words
-	{13,  3,  5,  7,  9,  1,  2, 14},   // 14 Not operators
-	};
-
-	return (states[i][j]);
-}
-
 void	automata_init(t_automata *a, void *data)
 {
 	alphabet_init(a);

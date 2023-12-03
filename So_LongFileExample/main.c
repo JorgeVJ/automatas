@@ -22,6 +22,16 @@ void	automata_init(t_automata *a, void *data)
 	a->get_state = get_state;
 }
 
+void	state_handle(t_automata *a, int state)
+{
+	if (a->state < a->errorlen)
+	{
+		printf("%s\n", a->errors[a->state]);
+		exit (EXIT_FAILURE);
+	}
+	((t_data *)a->data)->map = ft_sarradd(((t_data *)a->data)->map, a->str);
+}
+
 int	main(void)
 {
 	t_automata	a;
@@ -30,10 +40,29 @@ int	main(void)
 	ft_bzero(&a, sizeof(t_automata));
 	ft_bzero(&info, sizeof(t_data));
 	automata_init(&a, &info);
-	a.str = ft_strdup("111CPEE1");
-	printf("%s\n", a.str);
-	evaluate(&a);
+	evaluate_file(&a, "map.ber", state_handle);
+	if (!info.player_count || !info.exit_count)
+		exit (EXIT_FAILURE);
 	printf("there are:\n%d player\n%d exit\n%d collectible\n",
 		info.player_count, info.exit_count, info.collect_count);
+	
+	/* Changing actions to print background */
+	a.fsa[FOUND_0] = print_empty;
+	a.fsa[FOUND_P] = print_empty;
+	a.fsa[FOUND_E] = print_exit;
+	a.fsa[FOUND_C] = print_collectible;
+	a.fsa[FOUND_FIRST] = print_wall;
+	a.fsa[FOUND_MID] = print_wall;
+	a.fsa[FOUND_END] = print_wall;
+
+	/* Using the automata to print map */
+	int	i = -1;
+	while (info.map[++i])
+	{
+		a.str = info.map[i];
+		a.i = 0;
+		evaluate(&a);
+		printf("\n");
+	}
 	return (0);
 }

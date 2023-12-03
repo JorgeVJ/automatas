@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jvasquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/01 09:17:13 by jvasquez          #+#    #+#             */
-/*   Updated: 2023/12/01 09:17:14 by jvasquez         ###   ########.fr       */
+/*   Created: 2023/12/01 09:04:39 by jvasquez          #+#    #+#             */
+/*   Updated: 2023/12/01 09:04:40 by jvasquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,23 @@
 
 typedef struct s_data
 {
-	char	**tokens;
+	int		player_count;
+	int		exit_count;
+	int		collect_count;
+	char	**map;
 }	t_data;
 
 typedef enum e_states
 {
 	EMPTY,
-	DQUOTES,
-	SQUOTES,
-	PIPE,
-	OR,
-	LESS,
-	HEREDOC,
-	GREATER,
-	APPEND,
-	AMPER,
-	AND,
 	INVALID,
-	SPACES_NW,
-	SPACES_BTW,
-	NOT_OPERATOR
+	FOUND_P,
+	FOUND_E,
+	FOUND_C,
+	FOUND_0,
+	FOUND_FIRST,
+	FOUND_MID,
+	FOUND_END,
 }	t_states;
 
 void	alphabet_init(t_automata *a);
@@ -45,8 +42,14 @@ int		get_state(int i, int j);
 
 /* Single Actions */
 void	sactions_init(t_automata *a);
-void	get_token(t_automata *a, void *data);
-// void	count_player(t_automata *a, void *data);
+void	count_player(t_automata *a, void *data);
+void	count_exit(t_automata *a, void *data);
+void	count_collectible(t_automata *a, void *data);
+
+void	print_empty(t_automata *a, void *data);
+void	print_wall(t_automata *a, void *data);
+void	print_exit(t_automata *a, void *data);
+void	print_collectible(t_automata *a, void *data);
 
 /* Transition Actions */
 void	tactions_init(t_automata *a);

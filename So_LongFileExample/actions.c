@@ -16,33 +16,30 @@
 /*    This file will contain all the custom actions refered to the project    */
 /* ************************************************************************** */
 
-void	numtotree(t_data *data, t_tree *tree, int n)
+void	count_player(t_automata *a, void *data)
 {
-	int		*num;
+	t_data	*info;
 
-	num = malloc(sizeof(int));
-	*num = n;
-	if (!tree)
-		data->numbers = tree_new_node(num);
-	else if (*(int *)(tree->data) == n)
-		printf("Numero duplicado %d\n",n);
-	else if (*(int *)(tree->data) < n && tree->right == NULL)
-		tree->right = tree_new_node(num);
-	else if (*(int *)(tree->data) > n && tree->left == NULL)
-		tree->left = tree_new_node(num);
-	else if (*(int *)(tree->data) < n)
-		numtotree(data, tree->right, n);
-	else if (*(int *)(tree->data) > n)
-		numtotree(data, tree->left, n);
+	info = (t_data *)data;
+	info->player_count++;
+	if (info->player_count > 1)
+		exit(EXIT_FAILURE);
 }
 
-void	getnum(t_automata *a, void *data)
+void	count_exit(t_automata *a, void *data)
 {
-	int		numint;
-	t_tree	*tree;
+	t_data	*info;
 
-	tree = (t_tree *)((t_data *)data)->numbers;
-	numint = ft_atoi(a->str + a->j);
-	a->j = a->i;
-	numtotree((t_data *)data, tree, numint);
+	info = (t_data *)data;
+	info->exit_count++;
+	if (info->exit_count > 1)
+		exit(EXIT_FAILURE);
+}
+
+void	count_collectible(t_automata *a, void *data)
+{
+	t_data	*info;
+
+	info = (t_data *)data;
+	info->collect_count++;
 }

@@ -22,21 +22,22 @@ void	alphabet_init(t_automata *a)
 	a->alphabet = ft_sarradd(a->alphabet, "E");
 	a->alphabet = ft_sarradd(a->alphabet, "C");
 	a->alphabet = ft_sarradd(a->alphabet, "0");
+	a->alphabet = ft_sarradd(a->alphabet, "\n");
 }
 
 int	get_state(int i, int j)
 {
-	int states[][6] = {
-	//   1, P, E, C, 0, ^
-		{6, 1, 1, 1, 1, 1},   // 0 Empty input
-		{1, 1, 1, 1, 1, 1},   // 1 Invalid Character
-		{8, 2, 3, 4, 5, 1},   // 2 Player Found
-		{8, 2, 3, 4, 5, 1},   // 3 Exit Found
-		{8, 2, 3, 4, 5, 1},   // 4 Collectible Found
-		{8, 2, 3, 4, 5, 1},   // 5 Blank Space found
-		{7, 2, 3, 4, 5, 1},   // 6 First Wall
-		{8, 2, 3, 4, 5, 1},   // 7 Mid Wall
-		{8, 2, 3, 4, 5, 1},   // 8 End Wall
+	const int	states[][7] = {
+	//   1, P, E, C, 0,\n, ^
+		{6, 1, 1, 1, 1, 1, 1},   // 0 Empty input
+		{1, 1, 1, 1, 1, 1, 1},   // 1 Invalid Character
+		{8, 2, 3, 4, 5, 1, 1},   // 2 Player Found
+		{8, 2, 3, 4, 5, 1, 1},   // 3 Exit Found
+		{8, 2, 3, 4, 5, 1, 1},   // 4 Collectible Found
+		{8, 2, 3, 4, 5, 1, 1},   // 5 Blank Space found
+		{7, 2, 3, 4, 5, 1, 1},   // 6 First Wall
+		{8, 2, 3, 4, 5, 1, 1},   // 7 Mid Wall
+		{8, 2, 3, 4, 5, 8, 1},   // 8 End Wall
 	};
 
 	return (states[i][j]);

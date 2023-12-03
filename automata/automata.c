@@ -40,7 +40,8 @@ int	evaluate(t_automata *a)
 	return (a->state);
 }
 
-void	evaluate_file(t_automata *a, char *dir, void (*f)(t_automata *a, int state))
+void	evaluate_file(t_automata *a, char *dir,
+		void (*f)(t_automata *a, int state))
 {
 	int		file;
 	char	*line;
