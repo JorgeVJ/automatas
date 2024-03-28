@@ -6,12 +6,13 @@
 /*   By: jvasquez <jvasquez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 18:51:13 by jvasquez          #+#    #+#             */
-/*   Updated: 2024/03/29 00:04:50 by jvasquez         ###   ########.fr       */
+/*   Updated: 2024/03/29 00:36:45 by jvasquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "example.h"
 
+/* Function to iterate the Tree to evaluate and organize the tokens */
 void	evaluate_token(void *data, void *context)
 {
 	int		finalstate;
@@ -50,7 +51,7 @@ int	main(void)
 	organizer_automata_init(&organizer, &info);
 
 	/* Evaluates the first automata and check if the last state is valid */
-	tokenizer.str = ft_strdup(" echo 'hola<|>mundo'>outfile1 | cat -e << end >> outfile1| cat < infile > outfile2 | cmd <> iofile");
+	tokenizer.str = ft_strdup(" < infile cat -e | echo 'hola<|>mundo'>outfile1 | cat -e << end >> outfile1| cat < infile > outfile2 | cmd <> iofile");
 	// printf("%s\n", tokenizer.str);
 
 	finalstate = evaluate(&tokenizer);
@@ -59,7 +60,7 @@ int	main(void)
 	else
 		printf("%s\n", tokenizer.errors[finalstate]);
 
-	// printf("\nImprimir arbol tokenizado\n");
+	// printf("\nImprimir árbol tokenizado\n");
 	// tree_in_order(info.tree, printtree);
 
 
