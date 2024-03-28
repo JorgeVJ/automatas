@@ -3,27 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvasquez <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jvasquez <jvasquez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 18:51:13 by jvasquez          #+#    #+#             */
-/*   Updated: 2023/11/26 18:51:17 by jvasquez         ###   ########.fr       */
+/*   Updated: 2024/03/28 20:07:42 by jvasquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "example.h"
-
-int	get_state(int i, int j)
-{
-	int states[][4] = {
-	//  \s, -, D, ^
-		{0, 1, 3, 2},   // Empty input
-		{2, 2, 3, 2},   // Negative sign found
-		{2, 2, 2, 2},   // Invalid Character
-		{4, 2, 3, 2},   // Digit found
-		{4, 1, 3, 2},   // Space after Digits
-	};
-	return (states[i][j]);
-}
 
 void	printtree(void *data)
 {

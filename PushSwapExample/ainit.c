@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ainit.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvasquez <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jvasquez <jvasquez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 16:34:39 by jvasquez          #+#    #+#             */
-/*   Updated: 2023/11/26 16:34:42 by jvasquez         ###   ########.fr       */
+/*   Updated: 2024/03/28 20:07:46 by jvasquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,19 @@ void	alphabet_init(t_automata *a)
 	a->alphabet = ft_sarradd(NULL, " ");
 	a->alphabet = ft_sarradd(a->alphabet, "-");
 	a->alphabet = ft_sarradd(a->alphabet, "0123456789");
+}
+
+int	get_state(int i, int j)
+{
+	int states[][4] = {
+	//  \s, -, D, ^
+		{0, 1, 3, 2},   // Empty input
+		{2, 2, 3, 2},   // Negative sign found
+		{2, 2, 2, 2},   // Invalid Character
+		{4, 2, 3, 2},   // Digit found
+		{4, 1, 3, 2},   // Space after Digits
+	};
+	return (states[i][j]);
 }
 
 /**

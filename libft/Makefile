@@ -6,18 +6,18 @@
 #    By: jvasquez <jvasquez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/13 17:31:12 by jvasquez          #+#    #+#              #
-#    Updated: 2024/03/28 19:58:00 by jvasquez         ###   ########.fr        #
+#    Updated: 2024/03/28 22:52:04 by jvasquez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 INCLUDES = .
 CFLAGS = -Wall -Wextra -Werror -I $(INCLUDES)
-DIR_RGX = ./regex/
 DIR_LST = ./lst/
 DIR_MEM = ./mem/
 DIR_PUT = ./put/
 DIR_CHECK= ./check/
+DIR_BW = ./bitwise/
 DIR_TO = ./to/
 DIR_STR = ./str/
 DIR_PF = ./printf/
@@ -53,6 +53,14 @@ MEM = 		ft_bzero.c			\
 			ft_memcpy.c			\
 			ft_memmove.c		\
 			ft_memset.c			 
+
+BW =		check_bit.c			\
+			set_bit.c			\
+			not_bit.c			\
+			print_bits.c		\
+			check_mask_and.c	\
+			check_mask_not.c	\
+			check_mask_or.c
 
 STR =		ft_strlen.c			\
 			ft_strlcat.c		\
@@ -118,6 +126,7 @@ OBJS += $(addprefix $(DIR_RGX), ${RGX:.c=.o})
 OBJS += $(addprefix $(DIR_MEM), ${MEM:.c=.o})
 OBJS += $(addprefix $(DIR_PUT), ${PUT:.c=.o})
 OBJS += $(addprefix $(DIR_CHECK), ${CHECK:.c=.o})
+OBJS += $(addprefix $(DIR_BW), ${BW:.c=.o})
 OBJS += $(addprefix $(DIR_TO), ${TO:.c=.o})
 OBJS += $(addprefix $(DIR_STR), ${STR:.c=.o})
 OBJS += $(addprefix $(DIR_PF), ${PF:.c=.o})

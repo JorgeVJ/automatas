@@ -6,7 +6,7 @@
 /*   By: jvasquez <jvasquez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 17:28:16 by jvasquez          #+#    #+#             */
-/*   Updated: 2024/03/28 20:03:16 by jvasquez         ###   ########.fr       */
+/*   Updated: 2024/03/28 22:56:42 by jvasquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,15 @@ int		ft_isalnum(int c);
 int		ft_isascii(int c);
 int		ft_isprint(int c);
 int		ft_isspace(char c);
+
+/* Bitwise functions */
+int		set_bit(int *n, int bit, int val);
+int		check_bit(int n, int bit);
+int		not_bit(int *n, int bit);
+void	print_bits(int n);
+int		check_mask_and(int mask, int with);
+int		check_mask_not(int mask, int with);
+int		check_mask_or(int mask, int with);
 
 /* String functions */
 size_t	ft_strlen(const char *str);
@@ -118,5 +127,6 @@ void	tree_in_order(t_tree *tree, void (*ft)(void*));
 void	tree_pre_order(t_tree *tree, void (*ft)(void*));
 void	tree_post_order(t_tree *tree, void (*ft)(void*));
 void	tree_del_node(t_tree *node, void (*del)(void*));
+void	tree_in_order_context(t_tree *tree, void (*ft)(void*, void*), void *context);
 
 #endif

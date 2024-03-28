@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   example.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvasquez <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jvasquez <jvasquez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 09:09:03 by jvasquez          #+#    #+#             */
-/*   Updated: 2023/12/01 09:09:04 by jvasquez         ###   ########.fr       */
+/*   Updated: 2024/03/28 20:17:34 by jvasquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,3 +38,5 @@ void	getnum(t_automata *a, void *data);
 
 /* Transition Actions */
 void	tactions_init(t_automata *a);
+
+int		get_state(int i, int j);
