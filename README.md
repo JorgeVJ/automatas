@@ -7,21 +7,22 @@ and `automata.h` defines the structures and functions related to the automaton.
 
 ### Automata Structure
 
-typedef struct s_automata
-{
-	void	*data;                                                // Pointer to a desired structure to save / read data.
-	char	**alphabet;                                           // Array of strings with chars to be recognized.
-	char	**errors;                                             // Array of strings describing the error states.
-	char	*str;                                                 // String to be analize.
-	int		state;					            // Current State.
-	int		ostate;					            // Old/Previous State.
-	int		errorlen;                                       // Error states quantity.
-	int		i;                                              // Current parsing string index.
-	int		j;                                              // Auxiliar index to make easier getting substrings.
-	void	(*fsa[20])(struct s_automata *a, void *data);         // Array of functions, those will be activated just if a function is assigned to a state.
-	void	(*fta[20][20])(struct s_automata *a, void *data);     // Matrix of functions, those will be activated just if a function is assigned to it (two states needed).
-	int		(*get_state)(int state, int abc_idx);           // A function just to get a state from the state matrix.
-}	t_automata;
+	```c
+	typedef struct s_automata
+	{
+		void	*data;                                                // Pointer to a desired structure to save / read data.
+		char	**alphabet;                                           // Array of strings with chars to be recognized.
+		char	**errors;                                             // Array of strings describing the error states.
+		char	*str;                                                 // String to be analize.
+		int		state;					            // Current State.
+		int		ostate;					            // Old/Previous State.
+		int		errorlen;                                       // Error states quantity.
+		int		i;                                              // Current parsing string index.
+		int		j;                                              // Auxiliar index to make easier getting substrings.
+		void	(*fsa[20])(struct s_automata *a, void *data);         // Array of functions, those will be activated just if a function is assigned to a state.
+		void	(*fta[20][20])(struct s_automata *a, void *data);     // Matrix of functions, those will be activated just if a function is assigned to it (two states needed).
+		int		(*get_state)(int state, int abc_idx);           // A function just to get a state from the state matrix.
+	}	t_automata;
 
 
 ### Usage
