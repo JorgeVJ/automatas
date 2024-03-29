@@ -6,7 +6,7 @@
 /*   By: jvasquez <jvasquez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 16:48:08 by jvasquez          #+#    #+#             */
-/*   Updated: 2024/03/29 00:01:44 by jvasquez         ###   ########.fr       */
+/*   Updated: 2024/03/29 05:18:35 by jvasquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,16 @@ void	organize_token(t_automata *a, void *data)
 		token->infile = ft_strdup("HeredocFileName");
 		set_bit(&info->memory, MEM_HEREDOC, 0);
 		set_bit(&info->memory, MEM_LOWER, 0);
+		set_bit(&info->memory, REDIR_TAKEN, 1);
 	}
-	else if (check_bit(info->memory, MEM_LOWER))
+	if (check_bit(info->memory, MEM_LOWER))
 	{	// If LOWER have been readed, the substring is assigned to infile
 		token->infile = ft_strdup(trim);
 		set_bit(&info->memory, MEM_LOWER, 0);
+		set_bit(&info->memory, REDIR_TAKEN, 1);
 	}
+	if (check_bit(info->memory, REDIR_TAKEN))
+		set_bit(&info->memory, REDIR_TAKEN, 0);
 	else if (check_bit(info->memory, MEM_APPEND))
 	{	// If APPEND have been readed, the substring is assigned to outfile
 		token->outfile = ft_strdup(trim);

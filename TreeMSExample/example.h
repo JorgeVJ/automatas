@@ -6,7 +6,7 @@
 /*   By: jvasquez <jvasquez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 08:08:26 by jvasquez          #+#    #+#             */
-/*   Updated: 2024/03/28 23:38:24 by jvasquez         ###   ########.fr       */
+/*   Updated: 2024/03/29 05:16:55 by jvasquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ typedef enum e_ostates
 typedef enum e_memorybits
 {
 	CMD_TAKEN,
+	REDIR_TAKEN,
 	MEM_LOWER,
 	MEM_HEREDOC,
 	MEM_GREATER,
