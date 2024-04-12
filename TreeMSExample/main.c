@@ -6,7 +6,7 @@
 /*   By: jvasquez <jvasquez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 18:51:13 by jvasquez          #+#    #+#             */
-/*   Updated: 2024/03/29 05:19:30 by jvasquez         ###   ########.fr       */
+/*   Updated: 2024/04/12 19:15:57 by jvasquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	main(void)
 	organizer_automata_init(&organizer, &info);
 
 	/* Evaluates the first automata and check if the last state is valid */
-	tokenizer.str = ft_strdup(" < infile cat -e | echo 'hola<|>mundo'>outfile1 | cat -e << end >> outfile1| cat < infile > outfile2 | cmd <> iofile");
+	tokenizer.str = ft_strdup(" cat -e < infile1 < infile2 > outfile1 >> outfile2 > outfile3 | cmd <> iofile | cmd2 | cmd3");
 	// printf("%s\n", tokenizer.str);
 
 	finalstate = evaluate(&tokenizer);

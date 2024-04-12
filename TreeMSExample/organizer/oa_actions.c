@@ -6,7 +6,7 @@
 /*   By: jvasquez <jvasquez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 16:48:08 by jvasquez          #+#    #+#             */
-/*   Updated: 2024/03/29 05:18:35 by jvasquez         ###   ########.fr       */
+/*   Updated: 2024/03/30 13:08:28 by jvasquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,14 @@ void	organize_token(t_automata *a, void *data)
 
 	if (check_bit(info->memory, MEM_HEREDOC))
 	{	// If HEREDOC have been readed, the substring is assigned to infile
-		token->infile = ft_strdup("HeredocFileName");
+		token->infile = ft_sarradd(token->infile, ft_strdup("HeredocFileName"));
 		set_bit(&info->memory, MEM_HEREDOC, 0);
 		set_bit(&info->memory, MEM_LOWER, 0);
 		set_bit(&info->memory, REDIR_TAKEN, 1);
 	}
 	if (check_bit(info->memory, MEM_LOWER))
 	{	// If LOWER have been readed, the substring is assigned to infile
-		token->infile = ft_strdup(trim);
+		token->infile = ft_sarradd(token->infile, trim);
 		set_bit(&info->memory, MEM_LOWER, 0);
 		set_bit(&info->memory, REDIR_TAKEN, 1);
 	}
@@ -55,13 +55,21 @@ void	organize_token(t_automata *a, void *data)
 		set_bit(&info->memory, REDIR_TAKEN, 0);
 	else if (check_bit(info->memory, MEM_APPEND))
 	{	// If APPEND have been readed, the substring is assigned to outfile
-		token->outfile = ft_strdup(trim);
+		t_file *file;
+		file = malloc(sizeof(t_file));
+		file->name = ft_strdup(trim);
+		file->type = APPEND;
+		ft_lstadd_back(&token->outfiles, ft_lstnew(file));
 		set_bit(&info->memory, MEM_APPEND, 0);
 		set_bit(&info->memory, MEM_GREATER, 0);
 	}
 	else if (check_bit(info->memory, MEM_GREATER))
 	{	// If GREATER have been readed, the substring is assigned to outfile
-		token->outfile = ft_strdup(trim);
+		t_file *file;
+		file = malloc(sizeof(t_file));
+		file->name = ft_strdup(trim);
+		file->type = WRITE;
+		ft_lstadd_back(&token->outfiles, ft_lstnew(file));
 		set_bit(&info->memory, MEM_GREATER, 0);
 	}
 	else if (!check_bit(info->memory, CMD_TAKEN))

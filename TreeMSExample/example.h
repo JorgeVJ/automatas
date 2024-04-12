@@ -6,7 +6,7 @@
 /*   By: jvasquez <jvasquez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 08:08:26 by jvasquez          #+#    #+#             */
-/*   Updated: 2024/03/29 05:16:55 by jvasquez         ###   ########.fr       */
+/*   Updated: 2024/03/30 13:02:16 by jvasquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,26 @@ typedef enum e_toktype
 	TOK_OPR
 }	t_toktype;
 
+typedef enum e_filetype
+{
+	APPEND,
+	WRITE
+}	t_filetype;
+
+typedef struct s_file
+{
+	char		*name;
+	t_filetype 	type;
+} t_file;
+
 typedef struct s_token
 {
 	t_toktype	type;
 	char		*line;
 	char		*cmd;
 	char		**args;
-	char		*infile;
-	char		*outfile;
+	char		**infile;
+	t_list		*outfiles;
 }	t_token;
 
 typedef struct s_data
