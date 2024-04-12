@@ -4,6 +4,50 @@ This program implements an automaton using a finite state machine (FSM). The mai
 file, `automata.c`, contains functions for evaluating a string based on the FSM,
 and `automata.h` defines the structures and functions related to the automaton.
 
+
+### Automata Structure
+
+	```c
+	typedef struct s_automata
+	{
+ 		// Pointer to a desired structure to save / read data.
+		void	*data;
+  
+  		// Array of strings with chars to be recognized.
+		char	**alphabet;
+  
+  		// Array of strings describing the error states.
+		char	**errors;
+
+  		// String to be analize.
+		char	*str;
+  
+		// Current State.
+  		int	state;
+
+  		// Old/Previous State.
+		int	ostate;
+
+  		// Error states quantity.
+		int	errorlen;
+
+  		// Current parsing string index.
+		int	i;
+
+  		// Auxiliar index to make easier getting substrings.
+		int	j;
+
+  		// Array of functions, those will be activated just if a function is assigned to a state.
+		void	(*fsa[20])(struct s_automata *a, void *data);
+
+  		// Matrix of functions, those will be activated just if a function is assigned to it (two states needed).
+		void	(*fta[20][20])(struct s_automata *a, void *data);
+
+  		// A function just to get a state from the state matrix.
+		int		(*get_state)(int state, int abc_idx);
+	}	t_automata;
+
+
 ### Usage
 
 To use the automaton, follow these steps:
